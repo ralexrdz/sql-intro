@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>UX</title>
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/reveal.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section>
+          <section>
+            <h1>BASES DE DATOS</h1>
+          </section>
+          <section>
+            <p>Una base de datos es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso</p>
+          </section>
+          <section>
+            <h3>Base de datos relacional</h3>
+            <p fragment fade-in>
+              conjunto de una o más tablas estructuradas en registros (líneas) y campos (columnas), que se vinculan entre sí por un campo en común: ID
+            </p>
+          </section>
+          <section>
+            <h4>Esquema</h4>
+            <p> El esquema es la definición de la estructura de la base de datos y principalmente almacena los siguientes datos:</p>
+            <ul>
+
+              <li class="fragment fade-in">  El nombre de cada tabla</li>
+              <li class="fragment fade-in">  El nombre de cada columna</li>
+              <li class="fragment fade-in">  El tipo de dato de cada columna</li>
+              <li class="fragment fade-in">  La tabla a la que pertenece cada columna</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Instancia</h4>
+            <p class="fragment fade-in">
+              Es un registro (una fila dentro de una tabla)
+            </p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>SQL</h1>
+          </section>
+          <section>
+            <p>(por sus siglas en inglés Structured Query Language; en español lenguaje de consulta estructurada)</p>
+            <p> es un lenguaje específico del dominio utilizado en programación, diseñado para administrar, y recuperar información de sistemas de gestión de bases de datos relacionales</p>
+          </section>
+          <section>
+            <p>basado en 3 lenguajes</p>
+            <ol>
+              <li> lenguaje de definición de datos (DDL)</li>
+              <li> lenguaje de manipulación de datos (DML)</li>
+              <li> lenguaje de control de datos (DCL)</li>
+            </ol>
+          </section>
+          <section>
+            <h3>DDL</h3>
+            <p>lenguaje de programación para definir estructuras de datos</p>
+          </section>
+          <section>
+            <h4>CREATE</h4>
+            <pre><code data-trim>
+                CREATE TABLE[nombre de la tabla] ( [definiciones de columna] ) [parámetros de la tabla]
+            </code></pre>
+            <pre><code data-trim>
+                CREATE TABLE employees (
+                  id            INTEGER       PRIMARY KEY,
+                  first_name    VARCHAR(50)   not null,
+                  last_name     VARCHAR(75)   not null,
+                  fname         VARCHAR(50)   not null,
+                  dateofbirth   DATE          not null
+              );
+            </code></pre>
+          </section>
+          <section>
+            <h3>Restricciones</h3>
+            <ul>
+              <li>NOT NULL - Asegura que la columna no pueda tener un valor NULL</li>
+              <li>UNIQUE - Asegura que todos los valores de la columna sean diferentes</li>
+              <li>PRIMARY KEY - Combinación de NOT NULL y UNIQUE. Identificador único por fila</li>
+              <li>FOREIGN KEY - Identifica un valor único de otra tabla</li>
+              <li>CHECK - Condición a satisfacer por cada valor de esa columna</li>
+              <li>DEFAULT - Valor por default en caso de no especificar</li>
+              <li>INDEX - Marca la columna para poder hacer consultas sobre ella de manera más veloz</li>
+            </ul>
+          </section>
+          <section>
+            <h4>ALTER</h4>
+            <p>es usada para agregar, borrar o modificar columnas en una tabla existente</p>
+            <pre><code data-trim>
+                ALTER TABLE nombre_tabla
+                ADD nombre_columna tipo_datos
+                // DROP COLUMN nombre_columna
+            </code></pre>
+          </section>
+          <section>
+            <h4>DROP</h4>
+            <p>Sirve para borrar en forma sencilla distintos objetos dentro del [SGBD] como por ejemplo base de datos, tablas, índices</p>
+            <pre><code data-trim>
+                DROP objeto_a_eliminar;
+                DROP TABLE    myTable;
+                DROP SEQUENCE mySequence;
+                DROP INDEX    myIndex;               
+            </code></pre>
+          </section>
+          <section>
+            <h3>DML</h3>
+            <p> permite a los usuarios de la misma llevar a cabo las tareas de consulta o modificación de los datos contenidos en las Bases de Datos</p>
+          </section>
+          <section>
+            <h3>SELECT</h3>
+            <p> Es la operación más utilizada. Sirve para consultar una o varias tablas y arroja un conjunto de registros como resultado</p>
+            <pre><code data-trim>
+                SELECT [columnas a recibir / * para todas] FROM [nombre_tabla]
+            </code></pre>
+          </section>
+          <section>    
+            <p> La operación SELECT tiene varias opciones: </p>
+            <ul>
+              <li class="fragment fade-in">WHERE - condiciones de los valores en las columnas. (=, !=, >, <, >=, <=)</li>
+              <li class="fragment fade-in">GROUP BY - Agrupa los resultados según alguna columna</li>
+              <li class="fragment fade-in">HAVING - Selecciona sobre los resultados del GROUP BY</li>
+              <li class="fragment fade-in">ORDER BY Especifica bajo qué columnas se establecerá el orden de aparición de los registros</li>
+              <li class="fragment fade-in">AS - Para poner un Alias temporal al nombre de una columna.</li>
+            </ul>
+          </section>
+          <section>
+            <h3>INSERT</h3>
+            <p>Operación para agregar uno o más registros a una tabla</p>
+            <pre><code data-trim>
+                INSERT INTO nombre_tabla (columna1 [, columna2, columna3 ... ]) VALUES (valor1 [, valor2, valor3 ... ])
+            </code></pre>
+            <p style="font-size: 0.5em">el número de columnas tiene que ser igual al número de valores</p>
+          </section>
+          <section>
+            <h4>multi INSERT</h4>
+            <p>Para insertar varios registros de golpe</p>
+            <pre><code data-trim>
+              INSERT INTO tablename (column-a, [column-b, ...])
+              VALUES ('value-1a', ['value-1b', ...]),
+              ('value-2a', ['value-2b', ...]),
+            </code></pre>
+          </section>
+          <section>
+            <h3>UPDATE</h3>
+            <p>Operación para modificar uno o más registros a una tabla</p>
+            <pre><code data-trim>
+                UPDATE table_name SET column_name = value [, column_name = value ...] [WHERE conditción]
+            </code></pre>
+          </section>
+            <h3>DELETE</h3>
+            <p>Operación para eliminar uno o más registros a una tabla</p>
+            <pre><code data-trim>
+                DELETE FROM nombre_tabla [WHERE condición];
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Relaciones</h1>
+            <p>En una base de datos las tablas pueden estar relacionadas entre sí. Esto permite poder seleccionar datos de varias tablas en una misma consulta</p>
+            <p>Hay varios tipos de relaciones:</p>
+            <ul>
+                <li>Relatición uno a uno (one-to-one)</li>
+                <li>Relación uno a muchos / muchos a uno (one-to-many)</li>
+                <li>Relación muchos a mucho (many-to-many)</li>
+                <li>Relación de autoreferenciamiento</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Uno a uno</h3>
+            <p>Para separar en otra tabla algunos datos, pero sobre el mismo contexto</p>
+            <p>Puede servir para dar previlegios de lectura o modificación a ciertos roles</p>
+          </section>
+          <section>
+            <h3>Uno a muchos</h3>
+            <p>Es la más utilizada. Representa relaciones unidireccionales. Ejemplos</p>
+            <pre><code data-trim>
+Cliente con varias ordenes. Cada orden tendría una FORAIGN KEY de un cliente
+Pais con varias ciudades. Cada ciudad tendría el ID del país al que pertenece
+            </code></pre>
+          </section>
+          <section>
+            <h3>Muchos a muchos</h3>
+            <p>Es la más compleja de entender y manejar, dado que requiere una tabla extra para representarse. Ejemplos: </p>
+            <pre><code data-trim>
+Un autor puede haber escrito varios libros. Un libro puede haber sido escrito por varios autores.
+Un alumno puede participar en varios cursos. Un curso puede tener varios alumnos.
+            </code></pre>
+          </section>
+          <section>
+            <h3>JOINS</h3>
+            Para unir las relaciones entre varias tablas, se utilizan las operaciones JOINS: 
+            <ul>
+    <li>(INNER) JOIN: Returns records that have matching values in both tables</li>
+    <li>LEFT (OUTER) JOIN: Return all records from the left table, and the matched records from the right table</li>
+    <li>RIGHT (OUTER) JOIN: Return all records from the right table, and the matched records from the left table</li>
+    <li>FULL (OUTER) JOIN: Return all records when there is a match in either left or right table</li>
+            </ul>
+          </section>
+          <section>
+            <img src="./sql-joins.jpg" alt="">
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Diagramas</h2>
+          </section>
+          <section>
+            <img src="./diagrama.png" alt="">
+          </section>
+        </section>
+			</div>		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/lib/js/head.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/js/reveal.min.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				transition: 'zoom',
+				dependencies: [
+					{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/markdown/marked.js' },
+					{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/markdown/markdown.js' },
+					{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/notes/notes.js', async: true },
+					{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
