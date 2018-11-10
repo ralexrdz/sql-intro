@@ -91,6 +91,21 @@
             </code></pre>
           </section>
           <section>
+            <h3>Tipos de datos</h3>
+            <ul>
+              <li>HAR(size) 	Holds a fixed length string (can contain letters, numbers, and special characters). The fixed size is specified in parenthesis. Can store up to 255 characters</li>
+              <li>VARCHAR(size) 	Holds a variable length string (can contain letters, numbers, and special characters). The maximum size is specified in parenthesis. Can store up to 255 characters. Note: If you put a greater value than 255 it will be converted to a TEXT type</li>
+              <li>TINYTEXT 	Holds a string with a maximum length of 255 characters</li>
+              <li>TEXT 	Holds a string with a maximum length of 65,535 characters</li>
+              <li>BLOB 	For BLOBs (Binary Large OBjects). Holds up to 65,535 bytes of data</li>
+              <li>MEDIUMTEXT 	Holds a string with a maximum length of 16,777,215 characters</li>
+              <li>MEDIUMBLOB 	For BLOBs (Binary Large OBjects). Holds up to 16,777,215 bytes of data</li>
+              <li>LONGTEXT 	Holds a string with a maximum length of 4,294,967,295 characters</li>
+              <li>LONGBLOB 	For BLOBs (Binary Large OBjects). Holds up to 4,294,967,295 bytes of data</li>
+              <li>ENUM(x,y,z,etc.) 	Let you enter a list of possible values. You can list up to 65535 values in an ENUM list. If a value is inserted that is not in the list, a blank value will be inserted.</li>
+            </ul>
+          </section>
+          <section>
             <h3>Restricciones</h3>
             <ul>
               <li>NOT NULL - Asegura que la columna no pueda tener un valor NULL</li>
